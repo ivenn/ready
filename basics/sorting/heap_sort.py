@@ -1,4 +1,4 @@
-def min_heapify(arr, n, i):
+def max_heapify(arr, n, i):
     left = 2 * i + 1
     right = 2 * i + 2
     largest = i
@@ -9,14 +9,15 @@ def min_heapify(arr, n, i):
         largest = right
     if largest != i:
         arr[largest], arr[i] = arr[i], arr[largest]
-        min_heapify(arr, n, largest)
+        max_heapify(arr, n, largest)
 
 
 def heap_sort(arr, n):
     n = len(arr)
-
+    
+    # build max heap
     for i in range(n, -1, -1):
-        min_heapify(arr, n, i)
+        max_heapify(arr, n, i)
 
     for i in range(n - 1, -1, -1):
         arr[i], arr[0] = arr[0], arr[i]
