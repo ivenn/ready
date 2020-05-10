@@ -55,7 +55,36 @@ def add_two_numbers(head_a, head_b):
 
 
 def deep_copy_linked_list_with_random_prt(head):
-    pass
+    """
+    # Definition for a Node.
+    class Node:
+        def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+            self.val = int(x)
+            self.next = next
+            self.random = random
+    """
+    if not head:
+        return None
+
+    cur = head
+    dummy = ListNode("dummy")
+    copied_cur = dummy
+    nodes = {id(None): None}
+    while cur:
+        copied_node = ListNode(cur.val)
+        nodes[id(cur)] = copied_node
+        copied_cur.next = copied_node
+        copied_cur = copied_cur.next
+        cur = cur.next
+
+    copied_cur = dummy.next
+    cur = head
+    while copied_cur:
+        copied_cur.random = nodes[id(cur.random)]
+        copied_cur = copied_cur.next
+        cur = cur.next
+
+    return dummy.next
 
 
 def rotate_right(head, k):
